@@ -1,6 +1,9 @@
-package dev.cadudarmada.CadastroDePiratas;
+package dev.cadudarmada.CadastroDePiratas.Piratas;
 
+import dev.cadudarmada.CadastroDePiratas.Missoes.MissaoModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 // Transforma uma classe em uma entidade do BD
 //JPA = Java Persistence API
@@ -15,6 +18,11 @@ public class PirataModel {
     private String email;
     private int idade;
 
+    //Colocando uma coluna de missão na tabela pirata pois é uma relação muitos para um então o um vai para o muitos
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") //FK
+    private MissaoModel missoes;
+
     public PirataModel(){
 
     }
@@ -23,6 +31,7 @@ public class PirataModel {
         this.email = email;
         this.idade = idade;
     }
+
 
     public String getNome() {
         return nome;
